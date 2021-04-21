@@ -29,7 +29,7 @@ class Windmill{
             //bottom right
             bodyVerts.push_back(vec2(center.x() - width/3, center.y() + height/4));
             
-            Polygon body = Polygon(bodyVerts, 1, );
+            Polygon body = Polygon(bodyVerts, 1, color(245,184,89));
         }
         Windmill(vec2 coords){
 
