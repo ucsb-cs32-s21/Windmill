@@ -35,6 +35,15 @@ class Windmill{
 
         }
 
+        void setCenter(vec2 cen);
+        void setHeight(int height);
+        void setWidth(int width);
+
+        vec2 getCenter();
+        int getHeight();
+        int getWidth();
+
+
 
 };
 
