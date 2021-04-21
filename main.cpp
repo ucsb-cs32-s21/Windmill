@@ -103,8 +103,12 @@ int main(int argc, char *argv[]) {
 	*/
 
 	vector<shared_ptr<ellipse>> theEllipses;
+
 	vector<shared_ptr<Rect>> theRects;
+	
 	vector<shared_ptr<Polygon>> thePolys;
+	vector<vec2> trapVerts;
+	//trapVerts.push_back(vec2(sizeX/2 + 100));
 
 
 	if (argc < 4) {
