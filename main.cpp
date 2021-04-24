@@ -14,11 +14,14 @@ using namespace std;
 /*write out PPM data, using the defined implicit equation 
   interior points write a differnt color then exterior points */
 
-void writeOut(ostream& out, ppmR& theWriter, 
-				vector<shared_ptr<ellipse>> IEs, vector<shared_ptr<Rect>> Rs, vector<shared_ptr<Polygon>> Ps) {
+void writeOut(ostream& out, ppmR& theWriter,  
+				vector<shared_ptr<ellipse>> IEs, 
+				vector<shared_ptr<Rect> > Rs,
+				vector<shared_ptr<Polygon> > Ps) {
 
 	float res;
 	color inC;
+	color drawC;
 	color background(12, 34, 56);
 	bool inTrue = false;
 	double curDepth = -1.0;
@@ -30,6 +33,7 @@ void writeOut(ostream& out, ppmR& theWriter,
 			inTrue = false;
 			curDepth = -1;
 			//iterate through all possible equations (note 'front' determined by order in vector)
+
 			for (auto eq : IEs) {
 				res = eq->eval(x, y);
 				if (res < 0 && eq->getDepth() > curDepth) {
@@ -38,8 +42,7 @@ void writeOut(ostream& out, ppmR& theWriter,
 					curDepth = eq->getDepth();
 				}
 			}
-			
-			//uncomment this section when you've written rect.h
+
 			for (auto rect: Rs) {
 				if (rect->evalIn(x, y) && rect->getDepth() > curDepth){
 					inC = rect->getInC();
@@ -48,14 +51,14 @@ void writeOut(ostream& out, ppmR& theWriter,
 				}
 			}
 
-			for (auto poly: Rs) {
-				if (poly->evalIn(x, y) && poly->getDepth() > curDepth){
+			for (auto poly:Ps) {
+				if (poly->eval(x, y) && poly->getDepth() > curDepth){
 					inC = poly->getInC();
 					inTrue = true;
 					curDepth = poly->getDepth();
 				}
 			}
-			
+
 			if (inTrue) {			
 				theWriter.writePixel(out, x, y, inC);
 			}
@@ -107,10 +110,10 @@ int main(int argc, char *argv[]) {
 	vector<vec2> trapVerts;
 	//trapVerts.push_back(vec2(sizeX/2 + 100));
 
-	Windmill a = Windmill(300,300, vec2(150,150),1);
-
+	Windmill a = Windmill(300,300, vec2(150,150),2);
+	std::vector<Polygon> *windPoly = &a.getPolys();
 	for(int i = 0; i < a.getPolys().size(); i++){
-		thePolys.push_back(make_shared<Polygon>(a.getPolys().at(i)));
+		thePolys.push_back((make_shared<Polygon>(a.getPolys().at(i))));
 	}
 
 	if (argc < 4) {

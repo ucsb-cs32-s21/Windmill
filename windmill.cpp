@@ -15,14 +15,16 @@ Windmill::Windmill(int width, int height, vec2 center, int depth){
     bodyVerts.push_back(vec2(center.x() + width/4, center.y() - height/4));
 
  */
-    //bottom left
-    bodyVerts.push_back(vec2(0,300));
+    
     //bottom right
     bodyVerts.push_back(vec2(300,300));
-    //top right
-    bodyVerts.push_back(vec2(200,0));
+    //bottom left
+    bodyVerts.push_back(vec2(0,300));
     //top left
     bodyVerts.push_back(vec2(100,0));
+    //top right
+    bodyVerts.push_back(vec2(200,0));
+
 
     
 

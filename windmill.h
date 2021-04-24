@@ -35,7 +35,7 @@ class Windmill{
         int getHeight() const {return height;};
         int getWidth() const {return width;};
 
-        std::vector<Polygon> getPolys() {return polys;};
+        std::vector<Polygon>& getPolys() {return polys;};
         std::vector<Rect> getRects();
         std::vector<ellipse> getEllipses();
 
