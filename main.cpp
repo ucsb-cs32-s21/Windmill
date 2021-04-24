@@ -111,9 +111,8 @@ int main(int argc, char *argv[]) {
 	//trapVerts.push_back(vec2(sizeX/2 + 100));
 
 	Windmill a = Windmill(300,300, vec2(150,150),2);
-	std::vector<Polygon> *windPoly = &a.getPolys();
 	for(int i = 0; i < a.getPolys().size(); i++){
-		thePolys.push_back((make_shared<Polygon>(a.getPolys().at(i))));
+		//thePolys.push_back(&a.polys[i]);
 	}
 
 	if (argc < 4) {
@@ -126,7 +125,7 @@ int main(int argc, char *argv[]) {
 		if (outFile) {
 			cout << "writing an image of size: " << sizeX << " " << sizeY << " to: " << argv[3] << endl;
 			theWriter.writeHeader(outFile);
-			writeOut(outFile, theWriter, theEllipses, theRects, thePolys);
+			writeOut(outFile, theWriter, theEllipses, theRects, a.polys);
 		} else {
 			cout << "Error cannot open outfile" << endl;
 			exit(0);

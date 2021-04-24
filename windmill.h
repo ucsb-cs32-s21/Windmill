@@ -9,7 +9,7 @@
 
 class Windmill{
     private:
-        std::vector<Polygon> polys;
+        
         std::vector<Rect> rects;
         std::vector<ellipse> ellipses;
 
@@ -19,6 +19,7 @@ class Windmill{
         int depth;
 
     public:
+        std::vector<Polygon> polys;
         Windmill(int width, int height, vec2 center, int depth);
 
         void setCenter(vec2 &cen)
