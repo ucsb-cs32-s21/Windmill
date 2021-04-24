@@ -16,19 +16,26 @@ class Windmill{
         vec2 center;
         int width;
         int height;
+        int depth;
 
     public:
-        Windmill(int width, int height, vec2 center);
+        Windmill(int width, int height, vec2 center, int depth);
 
-        void setCenter(vec2 cen);
-        void setHeight(int height);
-        void setWidth(int width);
+        void setCenter(vec2 &cen)
+        {
+            this->center.setX(cen.x());
+            this->center.setY(cen.y());
+        };
+        void setHeight(int height) { this->height = height;};
+        void setWidth(int width) { this->width = width;};
 
-        vec2 getCenter();
-        int getHeight();
-        int getWidth();
+        void setDepth(int depth);
 
-        std::vector<Polygon> getPolys();
+        vec2 getCenter() const {return center;};
+        int getHeight() const {return height;};
+        int getWidth() const {return width;};
+
+        std::vector<Polygon> getPolys() {return polys;};
         std::vector<Rect> getRects();
         std::vector<ellipse> getEllipses();
 

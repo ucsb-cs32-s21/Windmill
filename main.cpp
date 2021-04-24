@@ -6,10 +6,7 @@
 #include <memory>
 #include <map>
 #include "ppmR.h"
-#include "color.h"
-#include "rect.h"
-#include "ellipse.h"
-#include "polygon.h"
+#include "windmill.h"
 
 using namespace std;
 
@@ -110,6 +107,11 @@ int main(int argc, char *argv[]) {
 	vector<vec2> trapVerts;
 	//trapVerts.push_back(vec2(sizeX/2 + 100));
 
+	Windmill a = Windmill(300,300, vec2(150,150),1);
+
+	for(int i = 0; i < a.getPolys().size(); i++){
+		thePolys.push_back(make_shared<Polygon>(a.getPolys().at(i)));
+	}
 
 	if (argc < 4) {
 		cerr << "Error format: a.out sizeX sizeY outfileName" << endl;
